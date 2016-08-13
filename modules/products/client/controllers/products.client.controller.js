@@ -40,9 +40,10 @@
       }
 
       function successCallback(res) {
-        $state.go('products.view', {
+        $state.go('products.list');
+        /*$state.go('products.view', {
           productId: res._id
-        });
+        });*/
       }
 
       function errorCallback(res) {
