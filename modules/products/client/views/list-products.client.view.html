@@ -1,0 +1,24 @@
+<section>
+  <div class="content-header">
+    <h1>Danh mục sản phẩm</h1><br>
+    <button type="button" class="btn btn-primary" data-ui-sref="products.create">Thêm mới</button>
+    <h4 class="pull-right">Đơn vị</h4><br>
+  </div>
+  <div class="list-group content">
+    <a data-ng-repeat="product in vm.products"
+      data-ui-sref="products.edit({ productId: product._id })"
+      class="list-group-item">
+      <small class="list-group-item-text" style="display:none;">
+        Posted on
+        <span data-ng-bind="product.created | date:'mediumDate'"></span>
+        by
+        <span data-ng-if="product.user" data-ng-bind="product.user.displayName"></span>
+        <span data-ng-if="!product.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading">{{product.name}}<span class="pull-right">{{product.unit}}</span></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.products.$resolved && !vm.products.length">
+    Chưa có sản phẩm nào. <a data-ui-sref="products.create">Thêm mới ngay</a>?
+  </div>
+</section>

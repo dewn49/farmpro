@@ -1,0 +1,29 @@
+  <div class="content-header">
+    <h1>{{vm.product._id ? 'Sửa sản phẩm' : 'Thêm mới sản phẩm'}}</h1>
+  </div>
+<section class="content">
+  <div class="col-md-12">
+    <form name="vm.form.productForm" class="form-horizontal" ng-submit="vm.save(vm.form.productForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Tên</label>
+          <input name="name" type="text" ng-model="vm.product.name" id="name" class="form-control" placeholder="Tên" required>
+          <div ng-messages="vm.form.productForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Product name is required.</p>
+          </div>
+          <label class="control-label" for="name">Đơn vị</label>
+          <input name="unit" type="text" ng-model="vm.product.unit" id="unit" class="form-control" placeholder="Đơn vị(kg/con/cu/quả)" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>  {{vm.product._id ? 'Lưu cập nhật' : 'Thêm'}}</button>
+          <button class="btn btn-primary" data-ng-click="vm.remove()" data-ng-if="vm.product._id">
+            <i class="glyphicon glyphicon-trash"></i>  Xóa
+          </button>          
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
