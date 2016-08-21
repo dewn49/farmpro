@@ -19,7 +19,7 @@ var ProductSchema = new Schema({
   unit: {
     type: String,
     default: '',
-    required: 'Đơn vị(kg/cây/con/củ/quả)',
+    required: 'Đơn vị không được bỏ trống',
     trim: true
   },
   created: {
