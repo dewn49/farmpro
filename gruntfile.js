@@ -91,6 +91,7 @@ module.exports = function (grunt) {
         logConcurrentOutput: true
       }
     },
+/*
     jshint: {
       all: {
         src: _.union(defaultAssets.server.gruntConfig, defaultAssets.server.allJS, defaultAssets.client.js, testAssets.tests.server, testAssets.tests.client, testAssets.tests.e2e),
@@ -115,6 +116,7 @@ module.exports = function (grunt) {
         src: [defaultAssets.client.css,"!modules/core/client/css/AdminLTE.css","!modules/core/client/css/all-skins.css"]
       }
     },
+*/
     ngAnnotate: {
       production: {
         files: {
@@ -298,11 +300,12 @@ module.exports = function (grunt) {
   });
 
   // Lint CSS and JavaScript files.
-  grunt.registerTask('lint', ['sass', 'less', 'jshint', 'eslint', 'csslint']);
+  //sonlt grunt.registerTask('lint', ['sass', 'less', 'jshint', 'eslint', 'csslint']);
+  grunt.registerTask('lint', ['sass', 'less']);
 
   // Lint project files and minify them into two production files.
   grunt.registerTask('build', ['env:dev', 'lint', 'ngAnnotate', 'uglify', 'cssmin']);
-
+/*
   // Run the project tests
   grunt.registerTask('test', ['env:test', 'lint', 'mkdir:upload', 'copy:localConfig', 'server', 'mochaTest', 'karma:unit', 'protractor']);
   grunt.registerTask('test:server', ['env:test', 'lint', 'server', 'mochaTest']);
@@ -310,7 +313,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test:e2e', ['env:test', 'lint', 'dropdb', 'server', 'protractor']);
   // Run project coverage
   grunt.registerTask('coverage', ['env:test', 'lint', 'mocha_istanbul:coverage', 'karma:unit']);
-
+*/
   // Run the project in development mode
   grunt.registerTask('default', ['env:dev', 'lint', 'mkdir:upload', 'copy:localConfig', 'concurrent:default']);
 
