@@ -14,18 +14,27 @@
         url: '/farmpros',
         template: '<ui-view/>'
       })
-      .state('farmpros.list', {
+      .state('farmpros.setting', {
         url: '',
-        templateUrl: 'modules/farmpros/client/views/list-farmpros.client.view.html',
+        templateUrl: 'modules/farmpros/client/views/setting-farmpros.client.view.html',
+        controller: 'FarmSettingController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Farm Setting'
+        }
+      })      
+      .state('farmpros.listcrops', {
+        url: '',
+        templateUrl: 'modules/farmpros/client/views/listcrops-farmpros.client.view.html',
         controller: 'FarmprosListController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Farmpros List'
+          pageTitle: 'List of crops'
         }
       })
-      .state('farmpros.create', {
+      .state('farmpros.createcrop', {
         url: '/create',
-        templateUrl: 'modules/farmpros/client/views/form-farmpro.client.view.html',
+        templateUrl: 'modules/farmpros/client/views/form-crop-farmpro.client.view.html',
         controller: 'FarmprosController',
         controllerAs: 'vm',
         resolve: {
@@ -33,7 +42,20 @@
         },
         data: {
           roles: ['user', 'admin'],
-          pageTitle: 'Farmpros Create'
+          pageTitle: 'New Crop'
+        }
+      })
+      .state('farmpros.createharvest', {
+        url: '/create',
+        templateUrl: 'modules/farmpros/client/views/form-harvest-farmpro.client.view.html',
+        controller: 'FarmprosController',
+        controllerAs: 'vm',
+        resolve: {
+          farmproResolve: newFarmpro
+        },
+        data: {
+          roles: ['user', 'admin'],
+          pageTitle: 'New Harvest'
         }
       })
       .state('farmpros.edit', {

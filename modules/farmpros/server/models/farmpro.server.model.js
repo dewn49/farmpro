@@ -9,11 +9,31 @@ var mongoose = require('mongoose'),
 /**
  * Farmpro Schema
  */
-var FarmproSchema = new Schema({
+var FarmSchema = new Schema({
   name: {
     type: String,
     default: '',
     required: 'Please fill Farmpro name',
+    trim: true
+  },
+  owner: {
+    type: String,
+    default: '',
+    required: 'Please fill Farmpro name',
+    trim: true
+  },
+  address: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  area: {
+    type: Number,
+    default: '0.000'
+  },
+  note: {
+    type: String,
+    default: '',
     trim: true
   },
   created: {
@@ -26,4 +46,4 @@ var FarmproSchema = new Schema({
   }
 });
 
-mongoose.model('Farmpro', FarmproSchema);
+mongoose.model('Farm', FarmSchema);

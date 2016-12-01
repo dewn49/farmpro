@@ -21,7 +21,8 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/farmpros/:farmproId',
       permissions: '*'
     }]
-  }, {
+  }, 
+  {
     roles: ['user'],
     allows: [{
       resources: '/api/farmpros',
@@ -30,7 +31,15 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/farmpros/:farmproId',
       permissions: ['get']
     }]
-  }, {
+  },
+  {
+    roles: ['user'],
+    allows: [{
+      resources: '/api/farminfo',
+      permissions: ['get', 'put']
+    }]
+  }, 
+  {
     roles: ['guest'],
     allows: [{
       resources: '/api/farmpros',

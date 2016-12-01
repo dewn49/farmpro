@@ -5,15 +5,15 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  Farmpro = mongoose.model('Farmpro'),
+  Farm = mongoose.model('Farm'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
 /**
- * Create a Farmpro
+ * Create a Farm
  */
 exports.create = function(req, res) {
-  var farmpro = new Farmpro(req.body);
+  var farmpro = new Farm(req.body);
   farmpro.user = req.user;
 
   farmpro.save(function(err) {
@@ -28,7 +28,7 @@ exports.create = function(req, res) {
 };
 
 /**
- * Show the current Farmpro
+ * Show the current Farm
  */
 exports.read = function(req, res) {
   // convert mongoose document to JSON
@@ -42,7 +42,7 @@ exports.read = function(req, res) {
 };
 
 /**
- * Update a Farmpro
+ * Update a Farm
  */
 exports.update = function(req, res) {
   var farmpro = req.farmpro;
@@ -61,7 +61,7 @@ exports.update = function(req, res) {
 };
 
 /**
- * Delete an Farmpro
+ * Delete an Farm
  */
 exports.delete = function(req, res) {
   var farmpro = req.farmpro;
@@ -78,10 +78,10 @@ exports.delete = function(req, res) {
 };
 
 /**
- * List of Farmpros
+ * List of Farms
  */
 exports.list = function(req, res) {
-  Farmpro.find().sort('-created').populate('user', 'displayName').exec(function(err, farmpros) {
+  Farm.find().sort('-created').populate('user', 'displayName').exec(function(err, farmpros) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -93,25 +93,70 @@ exports.list = function(req, res) {
 };
 
 /**
- * Farmpro middleware
+ * Farm middleware
  */
 exports.farmproByID = function(req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Farmpro is invalid'
+      message: 'Farm is invalid'
     });
   }
 
-  Farmpro.findById(id).populate('user', 'displayName').exec(function (err, farmpro) {
+  Farm.findById(id).populate('user', 'displayName').exec(function (err, farmpro) {
     if (err) {
       return next(err);
     } else if (!farmpro) {
       return res.status(404).send({
-        message: 'No Farmpro with that identifier has been found'
+        message: 'No Farm with that identifier has been found'
       });
     }
     req.farmpro = farmpro;
     next();
   });
+};
+
+
+/**
+ * Get Farm Setting
+ */
+exports.getSetting = function(req, res) {
+  // var farmpro = req.farmpro;
+
+  // farmpro = _.extend(farmpro, req.body);
+
+  // farmpro.save(function(err) {
+  //   if (err) {
+  //     return res.status(400).send({
+  //       message: errorHandler.getErrorMessage(err)
+  //     });
+  //   } else {
+  //     res.jsonp(farmpro);
+  //   }
+  // });
+  return res.status(200).send({
+        message: 'Get setting comming soon'
+      });
+};
+
+/**
+ * Update Farm Setting
+ */
+exports.updateSetting = function(req, res) {
+  // var farmpro = req.farmpro;
+
+  // farmpro = _.extend(farmpro, req.body);
+
+  // farmpro.save(function(err) {
+  //   if (err) {
+  //     return res.status(400).send({
+  //       message: errorHandler.getErrorMessage(err)
+  //     });
+  //   } else {
+  //     res.jsonp(farmpro);
+  //   }
+  // });
+  return res.status(200).send({
+        message: 'Update setting comming soon'
+      });
 };

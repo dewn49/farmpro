@@ -9,12 +9,15 @@
   ProductsService.$inject = ['$resource'];
 
   function ProductsService($resource) {
-    return $resource('api/products/:productId', {
-      productId: '@_id'
-    }, {
-      update: {
-        method: 'PUT'
-      }
-    });
+    return $resource('api/products/:productId', 
+                    {
+                      productId: '@_id'
+                    }, 
+                    {
+                      update: {
+                        method: 'PUT'
+                      }
+                    }
+    );
   }
 })();

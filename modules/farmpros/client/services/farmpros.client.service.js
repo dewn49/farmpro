@@ -9,9 +9,8 @@
   FarmprosService.$inject = ['$resource'];
 
   function FarmprosService($resource) {
-    return $resource('api/farmpros/:farmproId', {
-      farmproId: '@_id'
-    }, {
+    return $resource('api/farminfo', {}, 
+    {
       update: {
         method: 'PUT'
       }
