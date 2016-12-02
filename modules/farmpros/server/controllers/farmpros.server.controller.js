@@ -156,7 +156,18 @@ exports.updateSetting = function(req, res) {
   //     res.jsonp(farmpro);
   //   }
   // });
-  return res.status(200).send({
-        message: 'Update setting comming soon'
-      });
+
+  // var keyName1=req.body;
+  // console.log("#### Req body");
+  // console.log(keyName1);
+
+  // keyName1.name = "Hacker Farm";
+  // res.jsonp(keyName1);
+
+  // process.stdout.write("\n#### updateSetting\n");
+  var farm = req.body;
+  // farm = _.extend(farm, req.body);
+  console.log("#### Farm info: " + farm.name);
+  farm.name = "Hacker Farm";
+  res.jsonp(farm);
 };
