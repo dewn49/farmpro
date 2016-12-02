@@ -9,8 +9,10 @@ var farmprosPolicy = require('../policies/farmpros.server.policy'),
 module.exports = function(app) {
   // Farmpros Routes
   app.route('/api/farminfo').all(farmprosPolicy.isAllowed)
-    .get(farmpros.getSetting)
     .put(farmpros.updateSetting);
+
+  app.route('/info').all(farmprosPolicy.isAllowed)
+    .get(farmpros.getSetting)
 
   app.route('/api/farmpros/:farmproId').all(farmprosPolicy.isAllowed)
     .get(farmpros.read)

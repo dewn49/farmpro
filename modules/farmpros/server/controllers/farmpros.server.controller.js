@@ -121,22 +121,29 @@ exports.farmproByID = function(req, res, next, id) {
  * Get Farm Setting
  */
 exports.getSetting = function(req, res) {
-  // var farmpro = req.farmpro;
-
-  // farmpro = _.extend(farmpro, req.body);
-
-  // farmpro.save(function(err) {
-  //   if (err) {
-  //     return res.status(400).send({
-  //       message: errorHandler.getErrorMessage(err)
-  //     });
-  //   } else {
-  //     res.jsonp(farmpro);
-  //   }
-  // });
-  return res.status(200).send({
-        message: 'Get setting comming soon'
+  console.log("#### Get setting ===>");
+  var searchQuery = {
+    $or: [{'user' : req.user}]
+  };
+  Farm.findOne(searchQuery).exec(function(err, farm) {
+    if (err) {
+      console.log("#### DB error");
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
       });
+    } else {
+      if (!farm) {
+        console.log("#### Not found");
+        return res.jsonp(new Farm());
+      }
+      else {
+        console.log("#### Success");
+        res.jsonp(farm);
+      }
+
+    }
+  });
+
 };
 
 /**
@@ -165,9 +172,43 @@ exports.updateSetting = function(req, res) {
   // res.jsonp(keyName1);
 
   // process.stdout.write("\n#### updateSetting\n");
-  var farm = req.body;
+
+  var searchQuery = {
+    $or: [{'user' : req.user}]
+  };
+  Farm.findOne(searchQuery).exec(function(err, farm) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      if (!farm) {
+        farm = new Farm(req.body);
+        farm.user = req.user;
+        console.log("#### New Farm info: " + farm.name + "  Owner: " + farm.user.username);
+      }
+      else {
+        farm.name = req.body.name;
+        farm.address = req.body.address;
+        farm.area = req.body.area;
+        farm.note = req.body.note;
+        console.log("#### Update Farm info");
+      }
+
+      farm.save(function(err) {
+        if (err) {
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.status(200).send();
+        }
+      });
+    } 
+  });
+  
   // farm = _.extend(farm, req.body);
-  console.log("#### Farm info: " + farm.name);
-  farm.name = "Hacker Farm";
-  res.jsonp(farm);
+  // console.log("#### Farm info: " + farm.name);
+  // farm.name = "Hacker Farm";
+ 
 };

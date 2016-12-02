@@ -10,6 +10,6 @@
   function FarmprosListController(FarmprosService) {
     var vm = this;
 
-    vm.farmpros = FarmprosService.query();
+    // vm.farmpros = FarmprosService.query();
   }
 }());

@@ -7,7 +7,18 @@ angular.module('farmpros').controller('FarmSettingController', ['$scope', '$stat
     // $scope.farmArea = "4 ha";
     // $scope.farmNote = "Farm for test hehe";
 
-    $scope.farm = {"name" : "Tech Farm", "address" : "Hanoi 456", "area" : "5 ha", "note" : "Farm for development"};
+    // $scope.farm = FarmprosService.get();//{"name" : "", "address" : "", "area" : "", "note" : ""};
+
+    $http({method: 'GET', url: '/info'}).
+      success(function(data, status, headers, config) {
+        // this callback will be called asynchronously
+        // when the response is available
+        $scope.farm = data;
+      }).
+      error(function(data, status, headers, config) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+      });
 
     // Update a user profile
     $scope.updateFarmSetting = function (isValid) {
@@ -29,12 +40,12 @@ angular.module('farmpros').controller('FarmSettingController', ['$scope', '$stat
         // $scope.message = $scope.message = { type:'success',title:'Success',message:'Profile Updated.' };
         // Authentication.user = response;
         ////sonlt>
-        $scope.farm = response;
-       $scope.success = true;
-        $scope.message = $scope.message = { type:'success',title:'Success',message:'Farm Setting Updated.' };
+        //$scope.farm = response;
+        $scope.success = true;
+        //$scope.message = $scope.message = { type:'success',title:'Success',message:'Farm Setting Updated.' };
       }, function (response) {
         $scope.error = true;
-        $scope.message = $scope.message = { type:'danger',title:'Error',message:response.data.message };
+        //$scope.message = $scope.message = { type:'danger',title:'Error',message:response.data.message };
       });
     };
   }

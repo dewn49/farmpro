@@ -15,16 +15,16 @@
         template: '<ui-view/>'
       })
       .state('farmpros.setting', {
-        url: '',
+        url: '/info',
         templateUrl: 'modules/farmpros/client/views/setting-farmpros.client.view.html',
-        controller: 'FarmSettingController',
-        controllerAs: 'vm',
+        // controller: 'FarmSettingController',
+        // controllerAs: 'vm',
         data: {
           pageTitle: 'Farm Setting'
         }
       })      
       .state('farmpros.listcrops', {
-        url: '',
+        url: '/crops',
         templateUrl: 'modules/farmpros/client/views/listcrops-farmpros.client.view.html',
         controller: 'FarmprosListController',
         controllerAs: 'vm',

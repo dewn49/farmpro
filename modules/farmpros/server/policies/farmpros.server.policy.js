@@ -37,6 +37,9 @@ exports.invokeRolesPolicies = function () {
     allows: [{
       resources: '/api/farminfo',
       permissions: ['get', 'put']
+    }, {
+      resources: '/info',
+      permissions: ['get']
     }]
   }, 
   {

@@ -16,29 +16,20 @@ var FarmSchema = new Schema({
     required: 'Please fill Farmpro name',
     trim: true
   },
-  owner: {
-    type: String,
-    default: '',
-    required: 'Please fill Farmpro name',
-    trim: true
-  },
   address: {
     type: String,
     default: '',
     trim: true
   },
   area: {
-    type: Number,
-    default: '0.000'
+    type: String,
+    default: '0.0 ha',
+    trim: true
   },
   note: {
     type: String,
     default: '',
     trim: true
-  },
-  created: {
-    type: Date,
-    default: Date.now
   },
   user: {
     type: Schema.ObjectId,
