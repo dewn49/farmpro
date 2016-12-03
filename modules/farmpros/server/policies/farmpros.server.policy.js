@@ -33,7 +33,7 @@ exports.invokeRolesPolicies = function () {
     }]
   },
   {
-    roles: ['user'],
+    roles: ['user', 'admin'],
     allows: [{
       resources: '/api/farminfo',
       permissions: ['get', 'put']

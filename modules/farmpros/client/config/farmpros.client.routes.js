@@ -98,4 +98,8 @@
   function newCrop(CropsService) {
     return new CropsService();
   }
+
+  function newHarvest(CropsService) {
+    return new CropsService();
+  }  
 }());
