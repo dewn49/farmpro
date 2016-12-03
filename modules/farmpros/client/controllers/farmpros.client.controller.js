@@ -4,11 +4,11 @@
   // Farmpros controller
   angular
     .module('farmpros')
-    .controller('FarmprosController', FarmprosController);
+    .controller('CropController', CropController);
 
-  FarmprosController.$inject = ['$scope', '$state', '$window', 'Authentication', 'farmproResolve'];
+  CropController.$inject = ['$scope', '$state', '$window', 'Authentication', 'farmproResolve'];
 
-  function FarmprosController ($scope, $state, $window, Authentication, farmpro) {
+  function CropController ($scope, $state, $window, Authentication, farmpro) {
     var vm = this;
 
     vm.authentication = Authentication;

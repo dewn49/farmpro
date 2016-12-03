@@ -1,22 +1,23 @@
 <section>
   <div class="page-header">
-    <h1>Farmpros</h1>
+    <h1>List of crops</h1>
   </div>
   <div class="list-group">
-    <a ng-repeat="farmpro in vm.farmpros"
-       ui-sref="farmpros.view({ farmproId: farmpro._id })"
+    <a ng-repeat="crop in vm.crops"
+       ui-sref="crops.view({ cropId: crop._id })"
        class="list-group-item">
-      <small class="list-group-item-text">
+      <!--<small class="list-group-item-text">
         Posted on
         <span ng-bind="farmpro.created | date:'mediumDate'"></span>
         by
         <span ng-if="farmpro.user" ng-bind="farmpro.user.displayName"></span>
         <span ng-if="!farmpro.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="farmpro.name"></h4>
+      </small>-->
+      <h4 class="list-group-item-heading" ng-bind="crop.product.name"></h4>
+      <h4 class="list-group-item-heading" ng-bind="crop.startdate"></h4>
     </a>
   </div>
-  <div class="alert alert-warning text-center" ng-if="vm.farmpros.$resolved && !vm.farmpros.length">
-    No Farmpros yet, why don't you <a ui-sref="farmpros.create">create one</a>?
+  <div class="alert alert-warning text-center" ng-if="vm.crops.$resolved && !vm.crops.length">
+    No Crop yet, why don't you <a ui-sref="farmpros.createcrop">create one</a>?
   </div>
 </section>

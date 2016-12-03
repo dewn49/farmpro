@@ -5,7 +5,6 @@
  */
 var productsPolicy = require('../policies/products.server.policy'),
   products = require('../controllers/products.server.controller');
-  //,  productunit = require('../controllers/productunit.server.controller');
 
 module.exports = function(app) {
   // Products Routes
@@ -21,6 +20,4 @@ module.exports = function(app) {
   // Finish by binding the Product middleware
   app.param('productId', products.productByID);
   
-  //app.route('/api/productunit').get(productunit.list);
-  //app.route('/api/productunit').post(productunit.create);  
 };

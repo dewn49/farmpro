@@ -51,7 +51,39 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/farmpros/:farmproId',
       permissions: ['get']
     }]
-  }]);
+  },
+  
+  
+  {
+    roles: ['admin'],
+    allows: [{
+      resources: '/api/crops',
+      permissions: '*'
+    }, {
+      resources: '/api/crops/:cropId',
+      permissions: '*'
+    }]
+  }, {
+    roles: ['user'],
+    allows: [{
+      resources: '/api/crops',
+      permissions: ['get', 'post']
+    }, {
+      resources: '/api/products/:cropId',
+      permissions: ['get']
+    }]
+  }, {
+    roles: ['guest'],
+    allows: [{
+      resources: '/api/crops',
+      permissions: ['get']
+    }, {
+      resources: '/api/crops/:cropId',
+      permissions: ['get']
+    }]
+  }
+  
+  ]);
 };
 
 /**

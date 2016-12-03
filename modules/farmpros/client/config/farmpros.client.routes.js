@@ -26,19 +26,19 @@
       .state('farmpros.listcrops', {
         url: '/crops',
         templateUrl: 'modules/farmpros/client/views/listcrops-farmpros.client.view.html',
-        controller: 'FarmprosListController',
+        controller: 'CropsListController',
         controllerAs: 'vm',
         data: {
           pageTitle: 'List of crops'
         }
       })
       .state('farmpros.createcrop', {
-        url: '/create',
+        url: '/createCrop',
         templateUrl: 'modules/farmpros/client/views/form-crop-farmpro.client.view.html',
-        controller: 'FarmprosController',
+        controller: 'CropController',
         controllerAs: 'vm',
         resolve: {
-          farmproResolve: newFarmpro
+          farmproResolve: newCrop
         },
         data: {
           roles: ['user', 'admin'],
@@ -48,10 +48,10 @@
       .state('farmpros.createharvest', {
         url: '/create',
         templateUrl: 'modules/farmpros/client/views/form-harvest-farmpro.client.view.html',
-        controller: 'FarmprosController',
+        controller: 'CropController',
         controllerAs: 'vm',
         resolve: {
-          farmproResolve: newFarmpro
+          farmproResolve: newHarvest
         },
         data: {
           roles: ['user', 'admin'],
@@ -61,10 +61,10 @@
       .state('farmpros.edit', {
         url: '/:farmproId/edit',
         templateUrl: 'modules/farmpros/client/views/form-farmpro.client.view.html',
-        controller: 'FarmprosController',
+        controller: 'CropController',
         controllerAs: 'vm',
         resolve: {
-          farmproResolve: getFarmpro
+          farmproResolve: getCrop
         },
         data: {
           roles: ['user', 'admin'],
@@ -74,10 +74,10 @@
       .state('farmpros.view', {
         url: '/:farmproId',
         templateUrl: 'modules/farmpros/client/views/view-farmpro.client.view.html',
-        controller: 'FarmprosController',
+        controller: 'CropController',
         controllerAs: 'vm',
         resolve: {
-          farmproResolve: getFarmpro
+          farmproResolve: getCrop
         },
         data: {
           pageTitle: 'Farmpro {{ farmproResolve.name }}'
@@ -85,17 +85,17 @@
       });
   }
 
-  getFarmpro.$inject = ['$stateParams', 'FarmprosService'];
+  getCrop.$inject = ['$stateParams', 'CropsService'];
 
-  function getFarmpro($stateParams, FarmprosService) {
-    return FarmprosService.get({
-      farmproId: $stateParams.farmproId
+  function getCrop($stateParams, CropsService) {
+    return CropsService.get({
+      cropId: $stateParams.cropId
     }).$promise;
   }
 
-  newFarmpro.$inject = ['FarmprosService'];
+  newCrop.$inject = ['CropsService'];
 
-  function newFarmpro(FarmprosService) {
-    return new FarmprosService();
+  function newCrop(CropsService) {
+    return new CropsService();
   }
 }());
