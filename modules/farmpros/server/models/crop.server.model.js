@@ -15,8 +15,8 @@ var CropSchema = new Schema({
     default: 'Lập kế hoạch'
   },  
   product: {
-    type: Schema.ObjectId,
-    ref: 'Product'
+    type: String,
+    trim: true
   },
   phanbon: {
     type: String,

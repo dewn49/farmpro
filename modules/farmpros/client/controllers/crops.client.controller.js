@@ -18,14 +18,16 @@
     vm.remove = remove;
     vm.save = save;
     vm.jProducts = iProductsService.query();
-    vm.jProduct = null;
-    vm.jCrop.state = 'Planning';
-    vm.jCrop.startdate = new Date().toJSON().slice(0,10);
-    vm.jCrop.stopdate = new Date().toJSON().slice(0,10);
-    vm.jCrop.harvestdate = new Date().toJSON().slice(0,10);
-    vm.jCrop.phanbon = 'No';
-    vm.jCrop.thuocdietco = 'No';
-    vm.jCrop.thuoctrusau = 'No';
+
+//     vm.jCrop.state = 'Planning';
+//    vm.jCrop.startdate = new Date().toJSON().slice(0,10);
+//    vm.jCrop.stopdate = new Date().toJSON().slice(0,10);
+//    vm.jCrop.harvestdate = new Date().toJSON().slice(0,10);
+//     vm.jCrop.phanbon = 'No';
+//     vm.jCrop.thuocdietco = 'No';
+//     vm.jCrop.thuoctrusau = 'No';
+    vm.success = false;
+    vm.error = false;
 
     // $scope.var1 = '12-07-2013';
 
@@ -42,7 +44,8 @@
         $scope.$broadcast('show-errors-check-validity', 'vm.form.cropForm');
         return false;
       }
-
+      vm.jCrop.startdate = new Date(vm.jCrop.startdate.toLocaleDateString());
+      // vm.jCrop.stopdate = vm.jCrop.stopdate.toLocaleDateString();
       // TODO: move create/update logic to service
       if (vm.jCrop._id) {
         vm.jCrop.$update(successCallback, errorCallback);
@@ -51,12 +54,14 @@
       }
 
       function successCallback(res) {
-        $state.go('farmpros.view', {
+        vm.success = true;
+        $state.go('farmpros.edit', {
           cropId: res._id
         });
       }
 
       function errorCallback(res) {
+        vm.error = true;
         vm.error = res.data.message;
       }
     }

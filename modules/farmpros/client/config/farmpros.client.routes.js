@@ -59,8 +59,8 @@
         }
       })
       .state('farmpros.edit', {
-        url: '/:farmproId/edit',
-        templateUrl: 'modules/farmpros/client/views/form-farmpro.client.view.html',
+        url: '/:cropId/edit',
+        templateUrl: 'modules/farmpros/client/views/form-crop-farmpro.client.view.html',
         controller: 'CropController',
         controllerAs: 'vm',
         resolve: {

@@ -71,6 +71,10 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/products/:cropId',
       permissions: ['get']
+    },
+    {
+      resources: '/api/crops/:cropId',
+      permissions: '*'
     }]
   }, {
     roles: ['guest'],
