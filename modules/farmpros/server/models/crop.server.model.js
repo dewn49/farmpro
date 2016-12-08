@@ -38,7 +38,7 @@ var CropSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  harvest: {
+  harvestdate: {
     type: Date,
     default: Date.now
   },
@@ -46,7 +46,7 @@ var CropSchema = new Schema({
     type: String,
     default: ''
   },
-  user: {
+  farm: {
     type: Schema.ObjectId,
     ref: 'Farm'
   }

@@ -5,9 +5,12 @@ module.exports = {
     lib: {
       css: [
         'public/lib/bootstrap/dist/css/bootstrap.css',
-        'public/lib/font-awesome/css/font-awesome.min.css'
+        'public/lib/font-awesome/css/font-awesome.min.css',
+        'public/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.css'
       ],
       js: [
+        'public/lib/jquery/dist/jquery.js',         
+        'public/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js',       
         'public/lib/angular/angular.js',
         'public/lib/angular-resource/angular-resource.js',
         'public/lib/angular-animate/angular-animate.js',
@@ -32,7 +35,7 @@ module.exports = {
     js: [
       'modules/core/client/app/config.js',
       'modules/core/client/app/init.js',
-      //'modules/core/client/js/AdminLTE.js',
+      'modules/core/client/js/AdminLTE.js',
       'modules/*/client/*.js',
       'modules/*/client/**/*.js',
       'modules/core/client/directives/bootstrap-modal.js',

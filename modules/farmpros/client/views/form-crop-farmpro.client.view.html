@@ -1,20 +1,20 @@
-<section>
+<section class="content">
   <div class="page-header">
-    <h1>{{vm.farmpro._id ? 'Edit Crop' : 'New Crop'}}</h1>
+    <h1>{{vm.jCrop._id ? 'Edit Crop' : 'New Crop'}}</h1>
   </div>
   <div class="col-md-12">
-    <form name="vm.form.farmproForm" class="form-horizontal" ng-submit="vm.save(vm.form.farmproForm.$valid)" novalidate>
+    <form name="vm.form.cropForm" class="form-horizontal" ng-submit="vm.save(vm.form.cropForm.$valid)" novalidate>
       <fieldset>
         <div class="form-group" show-errors>
 
-          <label class="control-label" for="label">Product</label>
-          <select class="form-control" name="product" ng-model="" 
-                  ng-options="item.Id as item.Name for item in jProducts">
-              <option value="">Select Product</option>
+          <label class="control-label" for="label">Product:</label>
+          <select class="form-control" name="product" ng-model="vm.jCrop.product.name" 
+                  ng-options="item.Id as item.name for item in vm.jProducts">
+              <option value="">--Select Product--</option>
           </select>
 
-          <label class="control-label" for="label">State</label>
-          <select class="form-control" name="unit" ng-model="jState" ng-init="Planning">
+          <label class="control-label" for="label">State:</label>
+          <select class="form-control" name="state" ng-model="vm.jCrop.state" ng-init="Planning">
             <option>Planning</option>
             <option>Planting</option>
             <option>Waiting Harvest</option>
@@ -22,9 +22,85 @@
             <option>Done</option>
           </select>
 
+          <label>Start Date:</label>
+          <div class="input-group date">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <input type="text" class="form-control pull-right" id="idStartDate" ng-model="vm.jCrop.startdate">
+          </div>
+
+          <label>Stop Date:</label>
+          <div class="input-group date">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <input type="text" class="form-control pull-right" id="idStopDate" ng-model="vm.jCrop.stopdate">
+          </div>
+
+          <label>Harvest Date:</label>
+          <div class="input-group date">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <input type="text" class="form-control pull-right" id="idHarvestDate" ng-model="vm.jCrop.harvestdate">
+          </div>
+
+          <script>
+            $(function () {
+              //Date picker
+              $('#idStartDate').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+              });
+              //Date picker
+              $('#idStopDate').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true
+              });
+              $('#idHarvestDate').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true
+              });              
+            });
+          </script>
+
+          <label class="control-label" for="label">Phân Bón:</label>
+          <select class="form-control" name="phanbon" ng-model="vm.jCrop.phanbon" ng-init="No">
+            <option>No</option>
+            <option>Yes</option>
+          </select>
+
+          <label class="control-label" for="label">Thuốc diệt cỏ:</label>
+          <select class="form-control" name="thuocdietco" ng-model="vm.jCrop.thuocdietco" ng-init="No">
+            <option>No</option>
+            <option>Yes</option>
+          </select>
+
+          <label class="control-label" for="label">Thuốc trừ sâu:</label>
+          <select class="form-control" name="thuoctrusau" ng-model="vm.jCrop.thuoctrusau" ng-init="No">
+            <option>No</option>
+            <option>Yes</option>
+          </select>     
+          
+          <label class="control-label" for="label">Note:</label>
+          <input type="text" id="idNote" name="note" class="form-control" ng-model="vm.jCrop.note" placeholder="Other information" required>
+
+          <!--<div class="well">
+            <div id="date" class="input-append" datetimez ng-model="var1">
+              <input data-format="MM-dd-yyyy" type="text" id="input1" name="input1"></input>
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+              </span>
+            </div>
+          </div>-->
+
+          <!--<p><input type="text" ng-model="date" datetimez></p>
+          <p>{{ date }}</p>-->
+
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.farmpro._id ? 'Update' : 'Create'}}</button>
+          <button type="submit" class="btn btn-primary">{{vm.jCrop._id ? 'Update' : 'Create'}}</button>
         </div>
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>

@@ -38,7 +38,7 @@
         controller: 'CropController',
         controllerAs: 'vm',
         resolve: {
-          farmproResolve: newCrop
+          cropResolve: newCrop
         },
         data: {
           roles: ['user', 'admin'],
@@ -51,7 +51,7 @@
         controller: 'CropController',
         controllerAs: 'vm',
         resolve: {
-          farmproResolve: newHarvest
+          cropResolve: newHarvest
         },
         data: {
           roles: ['user', 'admin'],
@@ -64,11 +64,11 @@
         controller: 'CropController',
         controllerAs: 'vm',
         resolve: {
-          farmproResolve: getCrop
+          cropResolve: getCrop
         },
         data: {
           roles: ['user', 'admin'],
-          pageTitle: 'Edit Farmpro {{ farmproResolve.name }}'
+          pageTitle: 'Edit Farmpro {{ cropResolve.name }}'
         }
       })
       .state('farmpros.view', {
@@ -77,10 +77,10 @@
         controller: 'CropController',
         controllerAs: 'vm',
         resolve: {
-          farmproResolve: getCrop
+          cropResolve: getCrop
         },
         data: {
-          pageTitle: 'Farmpro {{ farmproResolve.name }}'
+          pageTitle: 'Farmpro {{ cropResolve.name }}'
         }
       });
   }
