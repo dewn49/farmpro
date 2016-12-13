@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
 var CropSchema = new Schema({
   state: {
     type: String,
-    default: 'Lập kế hoạch'
+    default: 'Planning'
   },  
   product: {
     type: String,
@@ -31,16 +31,16 @@ var CropSchema = new Schema({
     default: 'No'
   },
   startdate: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: ''
   },
   stopdate: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: ''
   },
   harvestdate: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: ''
   },
   note: {
     type: String,

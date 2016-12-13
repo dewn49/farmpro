@@ -45,6 +45,15 @@
           pageTitle: 'New Crop'
         }
       })
+      .state('farmpros.listharvest', {
+        url: '/harvests',
+        templateUrl: 'modules/farmpros/client/views/listharvest-farmpros.client.view.html',
+        controller: 'HarvestsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'List of harvest'
+        }
+      })
       .state('farmpros.createharvest', {
         url: '/create',
         templateUrl: 'modules/farmpros/client/views/form-harvest-farmpro.client.view.html',

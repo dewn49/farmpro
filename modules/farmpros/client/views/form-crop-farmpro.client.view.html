@@ -24,20 +24,19 @@
           </select>
 
           <label>Start Date:</label>          
-          <div class="input-group date" data-provide="datepicker">
+          <div class="input-group date">
             <div class="input-group-addon">
               <i class="fa fa-calendar"></i>
             </div>
-            <input type="text" class="form-control pull-right" ng-model="vm.jCrop.startdate">
+            <input type="text" class="mydatepicker form-control pull-right" ng-model="vm.jCrop.startdate">
           </div>
-          <label>-->Start Date: {{vm.jCrop.startdate}}</label><br>
-
+ 
           <label>Stop Date:</label>
           <div class="input-group date">
             <div class="input-group-addon">
               <i class="fa fa-calendar"></i>
             </div>
-            <input type="text" class="form-control pull-right" id="idStopDate" ng-model="vm.jCrop.stopdate">
+            <input type="text" class="mydatepicker form-control pull-right" ng-model="vm.jCrop.stopdate">
           </div>
 
           <label>Harvest Date:</label>
@@ -45,26 +44,16 @@
             <div class="input-group-addon">
               <i class="fa fa-calendar"></i>
             </div>
-            <input type="text" class="form-control pull-right" id="idHarvestDate" ng-model="vm.jCrop.harvestdate">
+            <input type="text" class="mydatepicker form-control pull-right" id="idHarvestDate" ng-model="vm.jCrop.harvestdate">
           </div>
 
           <script>
             $(function () {
-              //Date picker
-              $('.datepicker').datepicker({
-                format: 'mm/dd/yyyy',
-                autoclose: true
-              });
-              //Date picker
-              $('#idStopDate').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true
-              });
-              $('#idHarvestDate').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true
-              });              
-            });
+              $('.mydatepicker').datepicker({
+                  dateFormat: "dd/mm/yy",
+                  autoclose: true
+              })
+            });            
           </script>
 
           <label class="control-label" for="label">Phân Bón:</label>

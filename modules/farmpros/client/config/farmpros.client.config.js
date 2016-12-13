@@ -47,7 +47,13 @@ angular.module('chat').run(['Menus',
       state: 'farmpros.createcrop',
       roles: ['user', 'admin']
     });
-
+    
+    // Add the dropdown list item
+    Menus.addSubMenuItem('topbar', 'farmpros', {
+      title: 'List Harvest',
+      state: 'farmpros.listharvest'
+    });
+    
     // Add the dropdown create item
     Menus.addSubMenuItem('topbar', 'farmpros', {
       title: 'Create Harvest',

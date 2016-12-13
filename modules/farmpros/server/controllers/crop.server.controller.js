@@ -14,7 +14,7 @@ var path = require('path'),
  */
 exports.create = function(req, res) {
   var crop = new Crop(req.body);
-  crop.user = req.user;
+  // crop.user = req.user;
 
   crop.save(function(err) {
     if (err) {
