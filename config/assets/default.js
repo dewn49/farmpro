@@ -6,6 +6,7 @@ module.exports = {
       css: [
         'public/lib/bootstrap/dist/css/bootstrap.css',
         'public/lib/font-awesome/css/font-awesome.min.css',
+        'public/lib/jQueryUI/jquery-ui.js',
         'public/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.css'
       ],
       js: [

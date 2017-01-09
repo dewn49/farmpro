@@ -24,13 +24,13 @@
     $scope.From = '15/01/2015'; // DD/MM/YYYY
     $scope.To = '31/12/2015'; // DD/MM/YYYY
 
-    vm.jCrop.state = 'Planning';
+    // vm.jCrop.state = 'Planning';
 //    vm.jCrop.startdate = new Date().toJSON().slice(0,10);
 //    vm.jCrop.stopdate = new Date().toJSON().slice(0,10);
 //    vm.jCrop.harvestdate = new Date().toJSON().slice(0,10);
-    vm.jCrop.phanbon = 'No';
-    vm.jCrop.thuocdietco = 'No';
-    vm.jCrop.thuoctrusau = 'No';
+    // vm.jCrop.phanbon = 'No';
+    // vm.jCrop.thuocdietco = 'No';
+    // vm.jCrop.thuoctrusau = 'No';
     vm.success = false;
     vm.error = false;
 
@@ -60,7 +60,7 @@
 
       function successCallback(res) {
         vm.success = true;
-        $state.go('farmpros.edit', {
+        $state.go('crops.edit', {
           cropId: res._id
         });
       }

@@ -5,7 +5,8 @@
  */
 var farmprosPolicy = require('../policies/farmpros.server.policy'),
   farmpros = require('../controllers/farmpros.server.controller'),
-  crop = require('../controllers/crop.server.controller');
+  crop = require('../controllers/crop.server.controller'),
+  harvest = require('../controllers/harvest.server.controller');
 
 module.exports = function(app) {
   // Farmpros Routes
@@ -33,8 +34,21 @@ module.exports = function(app) {
     .put(crop.update)
     .delete(crop.delete);
 
-  // Finish by binding the Crop middleware
+  // Harvest Routes
+  app.route('/api/harvests').all(farmprosPolicy.isAllowed)
+    .get(harvest.list)
+    .post(harvest.create);
+
+  app.route('/api/harvests/:harvestId').all(farmprosPolicy.isAllowed)
+    .get(harvest.read)
+    .put(harvest.update)
+    .delete(harvest.delete);
+
+  // binding the Crop middleware
   app.param('cropId', crop.cropByID);
+
+  // binding the harvest middleware
+  app.param('harvestId', harvest.harvestByID);
 
 
 };

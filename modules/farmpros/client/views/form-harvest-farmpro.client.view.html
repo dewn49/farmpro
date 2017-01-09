@@ -1,5 +1,72 @@
-<section>
+<section class="content">
   <div class="page-header">
-    <h1>Create a new harvest</h1>
+    <h1>{{vm.jHarvest._id ? 'Edit Harvest' : 'New Harvest'}}</h1>
+  </div>
+  <div class="col-md-6">
+    <form name="vm.form.harvestForm" ng-submit="vm.save(vm.form.harvestForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+
+          <div ng-if="!vm.jHarvest._id">
+            <label class="control-label" for="label">Crop:</label>
+            <select class="form-control" name="crop" ng-model="vm.jHarvest.crop" 
+                  ng-options="crop.product + ' | From ' + crop.startdate + ' to ' + crop.stopdate for crop in vm.jCrops | filter: {state:'!Done'}">
+              <option value="">--Select Crop--</option>
+            </select>
+          </div>
+
+          <label>Planning Date:</label>          
+          <div class="input-group date">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <input type="text" class="mydatepicker form-control pull-right" ng-model="vm.jHarvest.planningdate">
+          </div>
+ 
+          <label>Harvest Date:</label>
+          <div class="input-group date">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <input type="text" class="mydatepicker form-control pull-right" ng-model="vm.jHarvest.harvestdate">
+          </div>
+
+          <script>
+            $(function () {
+              $('.mydatepicker').datepicker({
+                  dateFormat: "dd/mm/yy",
+                  autoclose: true
+              })
+            });            
+          </script>
+
+          <label class="control-label" for="label">Planning Yield:</label>
+          <input type="text" id="idPlanningYield" name="PlanningYield" class="form-control" ng-model="vm.jHarvest.planyield" required>
+
+          <label class="control-label" for="label">Harvest Yield:</label>
+          <input type="text" id="idPlanningYield" name="PlanningYield" class="form-control" ng-model="vm.jHarvest.harvestyield" required>
+
+          <label class="control-label" for="label">Planning Cost:</label>
+          <input type="text" id="idPlanningYield" name="PlanningYield" class="form-control" ng-model="vm.jHarvest.plancost" required>
+
+          <label class="control-label" for="label">Cost:</label>
+          <input type="text" id="idPlanningYield" name="PlanningYield" class="form-control" ng-model="vm.jHarvest.cost" required>
+          
+          <label class="control-label" for="label">Note:</label>
+          <input type="text" id="idNote" name="note" class="form-control" ng-model="vm.jHarvest.note" placeholder="Other information" required>
+
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">{{vm.jHarvest._id ? 'Update' : 'Create'}}</button>
+        </div>
+
+      </fieldset>
+            <div ng-show="vm.success" class="text-center text-success">
+              <strong>Successfully</strong>
+            </div>
+            <div ng-show="vm.error" class="text-center text-danger">
+              <strong>Failed!!!</strong>
+            </div>      
+    </form>
   </div>
 </section>

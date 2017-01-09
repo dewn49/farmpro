@@ -6,6 +6,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Crop = mongoose.model('Crop'),
+  Farm = mongoose.model('Farm'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -14,16 +15,36 @@ var path = require('path'),
  */
 exports.create = function(req, res) {
   var crop = new Crop(req.body);
-  // crop.user = req.user;
 
-  crop.save(function(err) {
+  // select farm by user
+  var searchQuery = {
+    $or: [{'user' : req.user}]
+  };
+  Farm.findOne(searchQuery).exec(function(err, farm) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(crop);
-    }
+      if (!farm) {
+        console.log("#### Vo ly qua, sao lai ko co farm");
+      }
+      else {
+        crop.farm = farm;
+
+        console.log("Farm ID: " + crop.farm._id);
+
+        crop.save(function(err) {
+          if (err) {
+            return res.status(400).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          } else {
+            res.jsonp(crop);
+          }
+        });        
+      }
+    } 
   });
 };
 

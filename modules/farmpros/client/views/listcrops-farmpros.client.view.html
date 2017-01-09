@@ -1,10 +1,10 @@
 <section class="content">
-  <div class="page-header">
-    <h1>List of crops</h1>
-  </div>
-  <div class="list-group">
+	<div class="page-header">
+		<h1>List of crops</h1>
+	</div>
+	<!--<div class="list-group">
     <a ng-repeat="crop in vm.crops"
-       ui-sref="farmpros.edit({ cropId: crop._id })"
+       ui-sref="crops.edit({ cropId: crop._id })"
        class="list-group-item">
       <!--<small class="list-group-item-text">
         Posted on
@@ -12,12 +12,36 @@
         by
         <span ng-if="farmpro.user" ng-bind="farmpro.user.displayName"></span>
         <span ng-if="!farmpro.user">Deleted User</span>
-      </small>-->
-      <h3 class="list-group-item-heading" ng-bind="crop.product"></h3>
-      <h4 class="list-group-item-heading">From {{crop.startdate}} to {{crop.stopdate}}</h4>
+      </small> --
+      <h3 class="list-group-item-heading">{{crop.product}} <span class="badge bg-green" ng-bind="crop.state"></span><span class="h4 list-group-item-heading text-right">From {{crop.startdate}} to {{crop.stopdate}}</span></h3>
+      
     </a>
-  </div>
-  <div class="alert alert-warning text-center" ng-if="vm.crops.$resolved && !vm.crops.length">
-    No Crop yet, why don't you <a ui-sref="farmpros.createcrop">create one</a>?
-  </div>
+  </div>-->
+
+	<table class="table table-striped table-responsive">
+		<tr>
+			<th>Product</th>
+			<th>State</th>
+			<th>Start</th>
+			<th>Harvest</th>
+			<th>Stop</th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="crop in vm.crops">
+			<td>{{crop.product}}</td>
+			<td><span ng-if="crop.state=='Planning'" class="badge bg-gray" ng-bind="crop.state"></span>
+				<span ng-if="crop.state=='Planting'" class="badge bg-green" ng-bind="crop.state"></span>
+				<span ng-if="crop.state=='Waiting Harvest'" class="badge bg-lime" ng-bind="crop.state"></span>
+				<span ng-if="crop.state=='Harvesting'" class="badge bg-orange" ng-bind="crop.state"></span>
+        <span ng-if="crop.state=='Done'" class="badge bg-silver" ng-bind="crop.state"></span></td>
+			<td>{{crop.startdate}}</td>
+			<td>{{crop.harvestdate}}</td>
+			<td>{{crop.stopdate}}</td>
+			<th><a ui-sref="crops.edit({ cropId: crop._id })">Edit</a> | <a ui-sref="#">Harvest</a></th>
+		</tr>
+	</table>
+
+	<div class="alert alert-warning text-center" ng-if="vm.crops.$resolved && !vm.crops.length">
+		No Crop yet, why don't you <a ui-sref="crops.create">create one</a>?
+	</div>
 </section>

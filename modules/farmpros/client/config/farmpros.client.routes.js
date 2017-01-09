@@ -22,9 +22,15 @@
         data: {
           pageTitle: 'Farm Setting'
         }
-      })      
-      .state('farmpros.listcrops', {
+      })
+      //############################################################################
+      .state('crops', {
+        abstract: true,
         url: '/crops',
+        template: '<ui-view/>'
+      })      
+      .state('crops.list', { 
+        url: '/listCrop',
         templateUrl: 'modules/farmpros/client/views/listcrops-farmpros.client.view.html',
         controller: 'CropsListController',
         controllerAs: 'vm',
@@ -32,7 +38,7 @@
           pageTitle: 'List of crops'
         }
       })
-      .state('farmpros.createcrop', {
+      .state('crops.create', {
         url: '/createCrop',
         templateUrl: 'modules/farmpros/client/views/form-crop-farmpro.client.view.html',
         controller: 'CropController',
@@ -45,29 +51,7 @@
           pageTitle: 'New Crop'
         }
       })
-      .state('farmpros.listharvest', {
-        url: '/harvests',
-        templateUrl: 'modules/farmpros/client/views/listharvest-farmpros.client.view.html',
-        controller: 'HarvestsListController',
-        controllerAs: 'vm',
-        data: {
-          pageTitle: 'List of harvest'
-        }
-      })
-      .state('farmpros.createharvest', {
-        url: '/create',
-        templateUrl: 'modules/farmpros/client/views/form-harvest-farmpro.client.view.html',
-        controller: 'CropController',
-        controllerAs: 'vm',
-        resolve: {
-          cropResolve: newHarvest
-        },
-        data: {
-          roles: ['user', 'admin'],
-          pageTitle: 'New Harvest'
-        }
-      })
-      .state('farmpros.edit', {
+      .state('crops.edit', {
         url: '/:cropId/edit',
         templateUrl: 'modules/farmpros/client/views/form-crop-farmpro.client.view.html',
         controller: 'CropController',
@@ -80,8 +64,8 @@
           pageTitle: 'Edit Farmpro {{ cropResolve.name }}'
         }
       })
-      .state('farmpros.view', {
-        url: '/:farmproId',
+      .state('crops.view', {
+        url: '/:cropId',
         templateUrl: 'modules/farmpros/client/views/view-farmpro.client.view.html',
         controller: 'CropController',
         controllerAs: 'vm',
@@ -91,7 +75,49 @@
         data: {
           pageTitle: 'Farmpro {{ cropResolve.name }}'
         }
-      });
+      })
+      //#########################################################################
+      // Harvest route 
+      //
+      .state('harvests', {
+        abstract: true,
+        url: '/harvests',
+        template: '<ui-view/>'
+      })
+      .state('harvests.list', {
+        url: '/list',
+        templateUrl: 'modules/farmpros/client/views/listharvest-farmpros.client.view.html',
+        controller: 'HarvestsListController as vm',
+        data: {
+          pageTitle: 'List of harvest'
+        }
+      })
+      .state('harvests.create', {
+        url: '/create',
+        templateUrl: 'modules/farmpros/client/views/form-harvest-farmpro.client.view.html',
+        controller: 'HarvestController',
+        controllerAs: 'vm',
+        resolve: {
+          harvestResolve: newHarvest
+        },
+        data: {
+          roles: ['user', 'admin'],
+          pageTitle: 'New Harvest'
+        }
+      })
+      .state('harvests.edit', {
+        url: '/:harvestId/edit',
+        templateUrl: 'modules/farmpros/client/views/form-harvest-farmpro.client.view.html',
+        controller: 'HarvestController',
+        controllerAs: 'vm',
+        resolve: {
+          harvestResolve: getHarvest
+        },
+        data: {
+          roles: ['user', 'admin'],
+          pageTitle: 'Edit Harvest'
+        }
+      });      
   }
 
   getCrop.$inject = ['$stateParams', 'CropsService'];
@@ -108,7 +134,17 @@
     return new CropsService();
   }
 
-  function newHarvest(CropsService) {
-    return new CropsService();
+  getHarvest.$inject = ['$stateParams', 'HarvestsService'];
+
+  function getHarvest($stateParams, HarvestsService) {
+    return HarvestsService.get({
+      harvestId: $stateParams.harvestId
+    }).$promise;
+  }
+
+  newHarvest.$inject = ['HarvestsService'];
+
+  function newHarvest(HarvestsService) {
+    return new HarvestsService();
   }  
 }());

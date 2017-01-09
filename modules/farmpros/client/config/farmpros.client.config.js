@@ -32,32 +32,35 @@ angular.module('chat').run(['Menus',
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'farmpros', {
       title: 'Setting',
-      state: 'farmpros.setting'
+      state: 'farmpros.setting',
+      roles: ['user', 'admin']
     });
 
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'farmpros', {
       title: 'List Crop',
-      state: 'farmpros.listcrops'
+      state: 'crops.list',
+      roles: ['user', 'admin']
     });
 
     // Add the dropdown create item
     Menus.addSubMenuItem('topbar', 'farmpros', {
       title: 'Create Crop',
-      state: 'farmpros.createcrop',
+      state: 'crops.create',
       roles: ['user', 'admin']
     });
     
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'farmpros', {
       title: 'List Harvest',
-      state: 'farmpros.listharvest'
+      state: 'harvests.list',
+      roles: ['user', 'admin']
     });
     
     // Add the dropdown create item
     Menus.addSubMenuItem('topbar', 'farmpros', {
       title: 'Create Harvest',
-      state: 'farmpros.createharvest',
+      state: 'harvests.create',
       roles: ['user', 'admin']
     });    
   }
