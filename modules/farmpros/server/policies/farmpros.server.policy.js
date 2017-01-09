@@ -59,33 +59,55 @@ exports.invokeRolesPolicies = function () {
     allows: [{
       resources: '/api/crops',
       permissions: '*'
-    }, {
+    }, 
+    {
       resources: '/api/crops/:cropId',
       permissions: '*'
+    },
+    {
+      resources: '/api/harvests',
+      permissions: '*'
+    }, 
+    {
+      resources: '/api/harvests/:harvestId',
+      permissions: '*'
     }]
-  }, {
+  }, 
+  
+  {
     roles: ['user'],
     allows: [{
       resources: '/api/crops',
       permissions: ['get', 'post']
-    }, {
-      resources: '/api/products/:cropId',
-      permissions: ['get']
     },
     {
       resources: '/api/crops/:cropId',
       permissions: '*'
-    }]
-  }, {
-    roles: ['guest'],
-    allows: [{
-      resources: '/api/crops',
+    },     
+    {
+      resources: '/api/products/:cropId',
       permissions: ['get']
-    }, {
-      resources: '/api/crops/:cropId',
-      permissions: ['get']
+    },     
+    {
+      resources: '/api/harvests',
+      permissions: ['get', 'post']
+    },     
+    {
+      resources: '/api/harvests/:harvestId',
+      permissions: ['*']
     }]
-  }
+  } 
+  
+  // ,{
+  //   roles: ['guest'],
+  //   allows: [{
+  //     resources: '/api/crops',
+  //     permissions: ['get']
+  //   }, {
+  //     resources: '/api/crops/:cropId',
+  //     permissions: ['get']
+  //   }]
+  // }
   
   ]);
 };
