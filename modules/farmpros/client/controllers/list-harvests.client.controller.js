@@ -5,10 +5,10 @@
     .module('farmpros')
     .controller('HarvestsListController', HarvestsListController);
 
-  HarvestsListController.$inject = ['HarvestsService'];
+  HarvestsListController.$inject = ['harvestResolve'];
 
-  function HarvestsListController(HarvestsService) {
+  function HarvestsListController(harvestResolve) {
     var vm = this;
-    vm.harvests = HarvestsService.query();
+    vm.harvests = harvestResolve;
   }
 }());

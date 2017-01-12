@@ -65,6 +65,10 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
     },
     {
+      resources: '/api/harvests/list/:cropId',
+      permissions: '*'
+    },
+    {
       resources: '/api/harvests',
       permissions: '*'
     }, 
@@ -87,6 +91,10 @@ exports.invokeRolesPolicies = function () {
     {
       resources: '/api/products/:cropId',
       permissions: ['get']
+    },
+    {
+      resources: '/api/harvests/list/:cropId',
+      permissions: 'get'
     },     
     {
       resources: '/api/harvests',

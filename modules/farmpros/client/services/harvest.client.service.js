@@ -20,4 +20,23 @@
                     }
     );
   }
+
+  angular
+    .module('farmpros')
+    .factory('HarvestListService', HarvestListService);
+
+  HarvestListService.$inject = ['$resource'];
+
+  function HarvestListService($resource) {
+    return $resource('api/harvests/list/:cropId', {},
+                    {
+                      selectFromCrop: {
+                        method: 'GET',
+                        cropId: '@_id',
+                        isArray: true
+                      }
+                    }
+    );
+  }
+
 })();

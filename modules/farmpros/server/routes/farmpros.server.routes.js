@@ -36,8 +36,10 @@ module.exports = function(app) {
 
   // Harvest Routes
   app.route('/api/harvests').all(farmprosPolicy.isAllowed)
-    .get(harvest.list)
     .post(harvest.create);
+
+  app.route('/api/harvests/list/:cropId').all(farmprosPolicy.isAllowed)
+    .get(harvest.list);
 
   app.route('/api/harvests/:harvestId').all(farmprosPolicy.isAllowed)
     .get(harvest.read)

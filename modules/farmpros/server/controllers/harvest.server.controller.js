@@ -71,13 +71,18 @@ exports.delete = function(req, res) {
 /**
  * List of harvests
  */
-exports.list = function(req, res) { 
-  Harvest.find().exec(function(err, harvests) {
+exports.list = function(req, res) {
+  var queryHarvest = {
+    $or: [{'crop' : req.crop}]
+  };
+
+  Harvest.find(queryHarvest).exec(function(err, harvests) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      console.log("#### Get harvest of crop " + req.crop._id);
       res.jsonp(harvests);
     }
   });

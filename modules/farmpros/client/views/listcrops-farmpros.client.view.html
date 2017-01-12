@@ -21,23 +21,28 @@
 	<table class="table table-striped table-responsive">
 		<tr>
 			<th>Product</th>
-			<th>State</th>
 			<th>Start</th>
 			<th>Harvest</th>
 			<th>Stop</th>
-			<th></th>
+			<th>State</th>
+			<th>Actual/Expected Yield</th>
+			<th>Harvest count</th>
+			<th>Actions</th>
 		</tr>
 		<tr ng-repeat="crop in vm.crops">
 			<td>{{crop.product}}</td>
-			<td><span ng-if="crop.state=='Planning'" class="badge bg-gray" ng-bind="crop.state"></span>
-				<span ng-if="crop.state=='Planting'" class="badge bg-green" ng-bind="crop.state"></span>
-				<span ng-if="crop.state=='Waiting Harvest'" class="badge bg-lime" ng-bind="crop.state"></span>
-				<span ng-if="crop.state=='Harvesting'" class="badge bg-orange" ng-bind="crop.state"></span>
-        <span ng-if="crop.state=='Done'" class="badge bg-silver" ng-bind="crop.state"></span></td>
 			<td>{{crop.startdate}}</td>
 			<td>{{crop.harvestdate}}</td>
 			<td>{{crop.stopdate}}</td>
-			<th><a ui-sref="crops.edit({ cropId: crop._id })">Edit</a> | <a ui-sref="#">Harvest</a></th>
+			<td><span ng-if="crop.state=='Planning'" class="badge bg-gray" ng-bind="crop.state"></span>
+				<span ng-if="crop.state=='Planting'" class="badge bg-green" ng-bind="crop.state"></span>
+				<span ng-if="crop.state=='Waiting Harvest'" class="badge bg-green" ng-bind="crop.state"></span>
+				<span ng-if="crop.state=='Harvesting'" class="badge bg-orange" ng-bind="crop.state"></span>
+        <span ng-if="crop.state=='Done'" class="badge bg-silver" ng-bind="crop.state"></span>
+      </td>
+			<td>30/100 Kg</td>
+			<td>0</td>
+			<th><a ui-sref="crops.edit({ cropId: crop._id })">Edit</a> | <a ui-sref="harvests.list({ cropId: crop._id })">View Harvest</a></th>
 		</tr>
 	</table>
 

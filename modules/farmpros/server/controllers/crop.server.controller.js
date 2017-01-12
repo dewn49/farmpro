@@ -101,15 +101,37 @@ exports.delete = function(req, res) {
 /**
  * List of crops
  */
-exports.list = function(req, res) { 
-  Crop.find().sort('-created').populate('user', 'displayName').exec(function(err, crops) {
+exports.list = function(req, res) {
+  // select farm by user
+  var searchQuery = {
+    $or: [{'user' : req.user}]
+  };
+  Farm.findOne(searchQuery).exec(function(err, farm) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(crops);
-    }
+      if (!farm) {
+        console.log("#### Vo ly qua, sao lai ko co farm");
+      }
+      else {
+        // select crop by farm
+        var searchCrop = {
+          $or: [{'farm' : farm}]
+        };
+
+        Crop.find(searchCrop).exec(function(err, crops) {
+          if (err) {
+            return res.status(400).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          } else {
+            res.jsonp(crops);
+          }
+        });           
+      }
+    } 
   });
 };
 

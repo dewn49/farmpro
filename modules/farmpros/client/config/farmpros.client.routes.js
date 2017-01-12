@@ -85,9 +85,12 @@
         template: '<ui-view/>'
       })
       .state('harvests.list', {
-        url: '/list',
+        url: '/list/:cropId/',
         templateUrl: 'modules/farmpros/client/views/listharvest-farmpros.client.view.html',
         controller: 'HarvestsListController as vm',
+        resolve: {
+          harvestResolve: getHarvestOfCrop
+        },
         data: {
           pageTitle: 'List of harvest'
         }
@@ -146,5 +149,13 @@
 
   function newHarvest(HarvestsService) {
     return new HarvestsService();
-  }  
+  } 
+
+  getHarvestOfCrop.$inject = ['$stateParams', 'HarvestListService'];
+  function getHarvestOfCrop($stateParams, HarvestListService) {
+    return HarvestListService.selectFromCrop({
+      cropId: $stateParams.cropId
+    }).$promise;
+  }
+  
 }());
