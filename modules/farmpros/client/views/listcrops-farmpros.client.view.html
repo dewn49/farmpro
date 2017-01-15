@@ -24,9 +24,9 @@
 			<th>Start</th>
 			<th>Harvest</th>
 			<th>Stop</th>
-			<th>State</th>
 			<th>Yield Plan</th>
 			<th>Yield Actual</th>
+			<th>State</th>
 			<th>Harvest count</th>
 		</tr>
 		<tr ng-repeat="crop in vm.crops">
@@ -34,14 +34,14 @@
 			<td>{{crop.startdate}}</td>
 			<td>{{crop.harvestdate}}</td>
 			<td>{{crop.stopdate}}</td>
+			<td>{{vm.arrYielPlan[vm.crops.indexOf(crop)]}}</td>
+			<td>{{vm.arrYielActual[vm.crops.indexOf(crop)]}}</td>
 			<td><span ng-if="crop.state=='Planning'" class="badge bg-gray" ng-bind="crop.state"></span>
 				<span ng-if="crop.state=='Planting'" class="badge bg-green" ng-bind="crop.state"></span>
 				<span ng-if="crop.state=='Waiting Harvest'" class="badge bg-green" ng-bind="crop.state"></span>
 				<span ng-if="crop.state=='Harvesting'" class="badge bg-orange" ng-bind="crop.state"></span>
         <span ng-if="crop.state=='Done'" class="badge bg-silver" ng-bind="crop.state"></span>
       </td>
-			<td>30</td>
-			<td>100</td>
 			<th><a ui-sref="crops.edit({ cropId: crop._id })">Edit</a> | <a ui-sref="harvests.list({ cropId: crop._id })">View Harvest</a></th>
 		</tr>
 	</table>
