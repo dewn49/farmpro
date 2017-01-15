@@ -3,21 +3,31 @@
     <h1>List of Harvest</h1>
   </div>
 
-  <div class="list-group">
-    <a ng-repeat="harvest in vm.harvests"
-       ui-sref="harvests.edit({ harvestId: harvest._id })"
-       class="list-group-item">
-      <!--<small class="list-group-item-text">
-        Posted on
-        <span ng-bind="farmpro.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="farmpro.user" ng-bind="farmpro.user.displayName"></span>
-        <span ng-if="!farmpro.user">Deleted User</span>
-      </small>-->
-      <h4 class="list-group-item-heading">{{harvest.planningdate}}&nbsp&nbsp -- &nbsp&nbsp  Yield(Actual/Expected): {{harvest.harvestyield}}/{{harvest.planyield}}</h4>
-      <!--<h4 class="list-group-item-heading">From {{crop.startdate}} to {{crop.stopdate}}</h4>-->
-    </a>
-  </div>
+	<table class="table table-striped table-responsive">
+		<tr>
+			<th>Plan</th>
+			<th>Actual</th>
+			<th>Yield Plan</th>
+			<th>Yield Actual</th>
+			<th>Cost Plan</th>
+			<th>Cost Actual</th>
+      <th>Remain</th>
+			<th>Note</th>
+      <th>Action</th>
+		</tr>
+		<tr ng-repeat="harvest in vm.harvests">
+			<td>{{harvest.planningdate}}</td>
+			<td>{{harvest.harvestdate}}</td>
+			<td>{{harvest.planyield}}</td>
+			<td>{{harvest.harvestyield}}</td>
+			<td>{{harvest.plancost}}</td>
+			<td>{{harvest.cost}}</td>
+      <td>{{harvest.harvestyield}}</td>
+      <td>{{harvest.note}}</td>            
+			<th><a ui-sref="harvests.edit({ harvestId: harvest._id })">Edit</a></th>
+		</tr>
+	</table>
+
   <div class="alert alert-warning text-center" ng-if="vm.harvests.$resolved && !vm.harvests.length">
     No Harvest yet, why don't you <a ui-sref="harvests.create">create one</a>?
   </div>

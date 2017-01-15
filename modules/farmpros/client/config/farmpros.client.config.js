@@ -51,11 +51,11 @@ angular.module('chat').run(['Menus',
     });
     
     // Add the dropdown list item
-    Menus.addSubMenuItem('topbar', 'farmpros', {
-      title: 'List Harvest',
-      state: 'harvests.list',
-      roles: ['user', 'admin']
-    });
+    // Menus.addSubMenuItem('topbar', 'farmpros', {
+    //   title: 'List Harvest',
+    //   state: 'harvests.list',
+    //   roles: ['user', 'admin']
+    // });
     
     // Add the dropdown create item
     Menus.addSubMenuItem('topbar', 'farmpros', {

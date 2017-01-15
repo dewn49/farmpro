@@ -25,9 +25,9 @@
 			<th>Harvest</th>
 			<th>Stop</th>
 			<th>State</th>
-			<th>Actual/Expected Yield</th>
+			<th>Yield Plan</th>
+			<th>Yield Actual</th>
 			<th>Harvest count</th>
-			<th>Actions</th>
 		</tr>
 		<tr ng-repeat="crop in vm.crops">
 			<td>{{crop.product}}</td>
@@ -40,8 +40,8 @@
 				<span ng-if="crop.state=='Harvesting'" class="badge bg-orange" ng-bind="crop.state"></span>
         <span ng-if="crop.state=='Done'" class="badge bg-silver" ng-bind="crop.state"></span>
       </td>
-			<td>30/100 Kg</td>
-			<td>0</td>
+			<td>30</td>
+			<td>100</td>
 			<th><a ui-sref="crops.edit({ cropId: crop._id })">Edit</a> | <a ui-sref="harvests.list({ cropId: crop._id })">View Harvest</a></th>
 		</tr>
 	</table>
