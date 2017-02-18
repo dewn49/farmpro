@@ -322,4 +322,7 @@ module.exports = function (grunt) {
 
   // Run the project in production mode
   grunt.registerTask('prod', ['build', 'env:prod', 'mkdir:upload', 'copy:localConfig', 'concurrent:default']);
+
+  grunt.registerTask('heroku:development', 'clean less mincss');
+  grunt.registerTask('heroku:production', 'clean less mincss uglify');
 };

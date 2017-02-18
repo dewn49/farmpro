@@ -15,6 +15,8 @@ function seedDB() {
     seed.start();
   }
 }
+//sonlt
+process.env.NODE_ENV = 'production';
 
 // Initialize Models
 mongoose.loadModels(seedDB);
