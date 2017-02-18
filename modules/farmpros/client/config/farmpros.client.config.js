@@ -49,19 +49,20 @@ angular.module('chat').run(['Menus',
       state: 'crops.create',
       roles: ['user', 'admin']
     });
-    
-    // Add the dropdown list item
-    // Menus.addSubMenuItem('topbar', 'farmpros', {
-    //   title: 'List Harvest',
-    //   state: 'harvests.list',
-    //   roles: ['user', 'admin']
-    // });
-    
+        
     // Add the dropdown create item
     Menus.addSubMenuItem('topbar', 'farmpros', {
       title: 'Create Harvest',
       state: 'harvests.create',
       roles: ['user', 'admin']
-    });    
+    });
+
+    // Store
+    Menus.addSubMenuItem('topbar', 'farmpros', {
+      title: 'Store',
+      state: 'stores.list',
+      roles: ['user', 'admin']
+    });
+        
   }
 }());

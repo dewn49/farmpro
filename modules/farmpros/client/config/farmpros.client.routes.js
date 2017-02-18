@@ -120,6 +120,22 @@
           roles: ['user', 'admin'],
           pageTitle: 'Edit Harvest'
         }
+      })
+      //#########################################################################
+      // Harvest route 
+      //
+      .state('stores', {
+        abstract: true,
+        url: '/stores',
+        template: '<ui-view/>'
+      })
+      .state('stores.list', {
+        url: '/',
+        templateUrl: 'modules/farmpros/client/views/stores-farmpros.client.view.html',
+        controller: 'StoresController as vm',
+        data: {
+          pageTitle: 'The store of products'
+        }
       });      
   }
 
